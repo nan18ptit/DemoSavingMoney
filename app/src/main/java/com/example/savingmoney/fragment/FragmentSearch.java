@@ -1,6 +1,7 @@
 package com.example.savingmoney.fragment;
 
 import android.app.DatePickerDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +27,9 @@ import com.example.savingmoney.adapter.RecycleViewAdapter;
 import com.example.savingmoney.dal.SQLiteHelper;
 import com.example.savingmoney.model.item;
 
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
+
 import java.util.Calendar;
 import java.util.List;
 
@@ -38,6 +42,9 @@ public class FragmentSearch extends Fragment implements View.OnClickListener{
     private Spinner spCategory;
     private RecycleViewAdapter adapter;
     private SQLiteHelper db;
+    // // Create the object PieChart class
+    private PieChart pieChart;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -71,6 +78,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener{
                 adapter.setList(list);
                 return true;
             }
+
         });
         // Lắng nghe các sự kiện
         eFrom.setOnClickListener(this);
@@ -108,6 +116,10 @@ public class FragmentSearch extends Fragment implements View.OnClickListener{
     }
     // Ánh xạ tất cả vào
     private void initView(View view) {
+        // Link those objects with their respective
+        // id's that we have given in .XML file
+        pieChart = view.findViewById(R.id.piechart);
+
         recyclerView = view.findViewById(R.id.recyclerView);
         tvTong = view.findViewById(R.id.tvTong);
         btSearch = view.findViewById(R.id.btSearch);
@@ -173,7 +185,67 @@ public class FragmentSearch extends Fragment implements View.OnClickListener{
                 List<item>list = db.searchByDateFromTo(dayFrom, dayTo);
                 adapter.setList(list);
                 tvTong.setText("Tong tien: "+ sum(list)+ " vnd");
+                // ve bieu do
+                setData(list);
             }
         }
     }
+    // Tính %
+    public int percent(List<item> list, String category){
+        int p = 0;
+        int t = sum(list);
+        int sumCate = 0;
+        for (int i = 0; i < list.size(); i++){
+            if(list.get(i).getCategory().equalsIgnoreCase(category)){
+                sumCate += Integer.parseInt(list.get(i).getPrice().toString().trim());
+            }
+        }
+        p = (sumCate*100)/t;
+        return p;
+    }
+    // set Data char
+    private void setData(List<item> list) {
+        // Set the data and color to the pie chart
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Mua sam",
+                        percent(list, "Mua sam"),
+                        Color.parseColor("#F44336")));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Di chuyen",
+                        percent(list, "Di chuyen"),
+                        Color.parseColor("#2196F3")));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Tien an",
+                        percent(list, "Tien an"),
+                        Color.parseColor("#E91E63")));
+
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Tien dien",
+                        percent(list, "Tien dien"),
+                        Color.parseColor("#4CAF50")));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Tien nuoc",
+                        percent(list, "Tien nuoc"),
+                        Color.parseColor("#9C27B0")));
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Du lich",
+                        percent(list, "Du lich"),
+                        Color.parseColor("#FF9800")));
+        // To animate the pie chart
+        pieChart.startAnimation();
+    }
+    private void clearData(List<item> list){
+        pieChart.addPieSlice(
+                new PieModel(
+                        "Mua sam",
+                        0,
+                        Color.parseColor("#F44336")));
+    }
+
 }

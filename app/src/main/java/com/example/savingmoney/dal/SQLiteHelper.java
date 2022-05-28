@@ -16,7 +16,7 @@ import java.util.List;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "ChiTieu.db";
-    private static int DATABASE_VERSION = 1;
+    private static int DATABASE_VERSION = 2;
 
     public SQLiteHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,11 +28,16 @@ public class SQLiteHelper extends SQLiteOpenHelper {
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "title TEXT, category TEXT, price TEXT, date TEXT)";
         db.execSQL(sql);
+        // tạo bảng acc
+        db.execSQL("CREATE TABLE acc(username TEXT primary key, password TEXT)");
+        db.execSQL("INSERT INTO acc VALUES('nan18','123')");
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+        db.execSQL("DROP TABLE IF EXISTS acc");
+        db.execSQL("DROP TABLE IF EXISTS items");
+        onCreate(db);
     }
 
     @Override
@@ -149,5 +154,14 @@ public class SQLiteHelper extends SQLiteOpenHelper {
             list.add(new item(id, title, category, price, date));
         }
         return list;
+    }
+
+    // check acc
+    public Boolean checkAccount(String username, String password){
+        SQLiteDatabase sqLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM acc WHERE username = ? AND password = ?",new String[]{username,password} );
+        if(cursor.getCount() > 0){
+            return true;
+        } else return false;
     }
 }

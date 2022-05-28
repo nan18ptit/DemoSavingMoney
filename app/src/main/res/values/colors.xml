@@ -9,4 +9,10 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gren">#FF9800</color>
     <color name="gray">#CDCBCB</color>
+    <color name="MuaSam">#F44336</color>
+    <color name="DiChuyen">#2196F3</color>
+    <color name="TienAn">#E91E63</color>
+    <color name="TienDien">#4CAF50</color>
+    <color name="TienNuoc">#9C27B0</color>
+    <color name="DuLich">#FF9800</color>
 </resources>
