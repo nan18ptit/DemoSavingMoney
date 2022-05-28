@@ -67,7 +67,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener{
             @Override
             public boolean onQueryTextChange(String s) {
                 List<item>list = db.searchByTitle(s);
-                tvTong.setText("Tong tien: "+ sum(list)+ "vnd");
+                tvTong.setText("Tong tien: "+ sum(list)+ " vnd");
                 adapter.setList(list);
                 return true;
             }
@@ -89,7 +89,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener{
                     list = db.getAll();
                 }
                 adapter.setList(list);
-                tvTong.setText("Tong tien: "+ sum(list)+ "vnd");
+                tvTong.setText("Tong tien: "+ sum(list)+ " vnd");
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
@@ -172,7 +172,7 @@ public class FragmentSearch extends Fragment implements View.OnClickListener{
             if (!dayFrom.isEmpty() && !dayTo.isEmpty()){
                 List<item>list = db.searchByDateFromTo(dayFrom, dayTo);
                 adapter.setList(list);
-                tvTong.setText("Tong tien: "+ sum(list)+ "vnd");
+                tvTong.setText("Tong tien: "+ sum(list)+ " vnd");
             }
         }
     }

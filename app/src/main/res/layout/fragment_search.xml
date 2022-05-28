@@ -4,30 +4,74 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
-    <SearchView
-        android:id="@+id/search"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_marginTop="10dp"
-        app:iconifiedByDefault="false"
-        app:queryHint="Enter search..."
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/eFrom"
-        android:layout_marginTop="10dp"
-        android:textSize="12dp"
-        android:hint="Start Day"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Search by title: "
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <SearchView
+            android:id="@+id/search"
+            app:iconifiedByDefault="false"
+            android:queryHint="Enter key title..."
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:id="@+id/eTo"
-        android:layout_marginTop="10dp"
-        android:textSize="12dp"
-        android:hint="End Day"
-        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/tvSearchDate"
+            android:text="Search by date: "
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <EditText
+                android:id="@+id/eFrom"
+                android:layout_marginLeft="10dp"
+                android:textSize="16dp"
+                android:hint="Start Day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+            <EditText
+                android:id="@+id/eTo"
+                android:layout_marginLeft="10dp"
+                android:textSize="16dp"
+                android:hint="End Day"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:text="Search by Category: "
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <LinearLayout
         android:orientation="horizontal"
         android:weightSum="2"
+        android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Spinner
@@ -48,14 +92,15 @@
         android:id="@+id/tvTong"
         android:textColor="@color/gren"
         android:text="Tong: "
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:textSize="20dp"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_marginTop="10dp"
+        android:layout_margin="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>

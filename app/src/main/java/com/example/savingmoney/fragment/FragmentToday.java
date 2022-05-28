@@ -47,7 +47,7 @@ public class FragmentToday extends Fragment  {
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
         List<item> list = db.getByDate(f.format(d));
         adapter.setList(list);
-        tvTong.setText("Tong tien: " + sum(list));
+        tvTong.setText("Tong tien: " + sum(list)+ " vnd");
         LinearLayoutManager manager = new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(adapter);
@@ -67,7 +67,7 @@ public class FragmentToday extends Fragment  {
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
         List<item> list = db.getByDate(f.format(d));
         adapter.setList(list);
-        tvTong.setText("Tong tien: " + sum(list));
+        tvTong.setText("Tong tien: " + sum(list)+ " vnd");
     }
 
 }
