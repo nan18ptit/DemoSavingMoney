@@ -237,6 +237,8 @@ public class FragmentSearch extends Fragment implements View.OnClickListener{
                         "Du lich",
                         percent(list, "Du lich"),
                         Color.parseColor("#FF9800")));
+        // refresh
+        pieChart.invalidate();
         // To animate the pie chart
         pieChart.startAnimation();
     }

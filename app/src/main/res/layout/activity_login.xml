@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".LoginActivity"
     android:orientation="vertical">
     <LinearLayout
@@ -23,7 +24,9 @@
     <TextView
         android:text="User "
         android:textSize="20dp"
+        android:layout_marginLeft="15dp"
         android:textStyle="bold"
+        android:layout_marginTop="40dp"
         android:layout_marginRight="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
@@ -31,19 +34,25 @@
         android:id="@+id/eUser"
         android:hint="Enter user"
         android:textSize="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
         android:text="Password "
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_marginRight="20dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <EditText
         android:id="@+id/ePassword"
         android:hint="Enter password"
         android:textSize="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
@@ -51,6 +60,8 @@
         android:orientation="horizontal"
         android:weightSum="2"
         android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
